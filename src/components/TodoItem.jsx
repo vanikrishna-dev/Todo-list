@@ -1,4 +1,5 @@
 import Button from "./buttons";
+import './TodoItem.css';
 
  const TodoItem = ({id, todoText, todoDate}) => {
     return <div class="container">

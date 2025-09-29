@@ -1,3 +1,5 @@
+import './AppName.css';
+
 const AppName = () => {
     return <h1>Todo List</h1>
 }
