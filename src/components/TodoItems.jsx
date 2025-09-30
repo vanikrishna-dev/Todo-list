@@ -12,7 +12,7 @@ const TodoItems = () => {
         <>
         {todoItems.map((items) => (
 
-            <TodoItem todoText={items.todoText} todoDate={items.todoDate} />
+            <TodoItem key={items.id} id={items.id} todoText={items.todoText} todoDate={items.todoDate} />
         ))}
         </>
     );
