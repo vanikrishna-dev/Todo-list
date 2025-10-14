@@ -4,8 +4,7 @@ import TodoItems from "./components/TodoItems"
 
 function App() {
 
-  return (
-    <>
+  return ( 
     <center>
       <AppName  />
       <br />
@@ -13,7 +12,6 @@ function App() {
       <br />
       <TodoItems />
     </center>
-    </>
   )
 }
 
