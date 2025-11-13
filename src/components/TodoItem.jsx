@@ -1,11 +1,7 @@
 import Button from "./buttons";
 import './TodoItem.css';
 
- const TodoItem = ({id, todoText, todoDate}) => {
-    
-    const deleteHandler = () => {
-      console.log(`Trying to delete ${id} ${todoText}`);
-    }
+ const TodoItem = ({id, todoText, todoDate, deleteTodoItem}) => {
     
     return <div className="container">
         <div className="row">
@@ -16,7 +12,10 @@ import './TodoItem.css';
             {todoDate}
           </div>
           <div className="col-2">
-            <Button btnType="danger" btnText='Delete'handler={deleteHandler}/> 
+            <Button 
+            btnType="danger" 
+            btnText='Delete'
+            handler={() => deleteTodoItem(id)} /> 
           </div> 
         </div> 
       </div>
