@@ -1,8 +1,10 @@
+import { useContext } from "react";
 import Button from "./buttons";
 import './TodoItem.css';
+import { TodoContext } from "../store/TodoContext";
 
- const TodoItem = ({id, todoText, todoDate, deleteTodoItem}) => {
-    
+ const TodoItem = ({id, todoText, todoDate}) => {
+    const {deleteTodoItem} = useContext(TodoContext);
     return <div className="container">
         <div className="row">
           <div className="col-5 text-truncate">
