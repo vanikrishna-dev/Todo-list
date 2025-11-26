@@ -1,16 +1,14 @@
-import { useContext } from "react"
+import { useContext, useEffect, useState } from "react"
 import { TodoContext } from "../store/TodoContext"
 import Button from "./buttons";
 
 const LoadItems = () => {
 
     const {todoItems, addAllTodoItems } = useContext(TodoContext);
+    const [isLoading, setIsLoading] = useState(false);
 
-    if (todoItems.length !== 0){
-        return <></>;
-    }
-
-    const loadItemsHandler = () => {
+    useEffect(() => {
+        setIsLoading(true)
         fetch('http://localhost:3000/todos')
         .then(res => res.json())
         .then(items => {
@@ -22,13 +20,20 @@ const LoadItems = () => {
                 })
             )
             addAllTodoItems(newItems)
+        })
+        .finally(() => {
+            setIsLoading(false);
         });
-    }
+    }, []);
 
     return (
         <>
-            <h2>Enjoy your day</h2>
-            <Button btnText = 'Load Todos' handler = {loadItemsHandler}> Load Todos </Button>
+            {isLoading && (
+                <div className="spinner-border" role="status">
+                    <span className="visually-hidden">Loading...</span>
+                </div>
+            )}
+            {!isLoading && todoItems.length === 0 && <p>Enjoy your day</p>}
         </>
     )
 }
