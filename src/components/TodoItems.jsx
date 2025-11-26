@@ -4,6 +4,7 @@ import { TodoContext } from "../store/TodoContext";
 
 const TodoItems = () => {
     const {todoItems} = useContext(TodoContext);
+
     return (
         <>
         {todoItems.map((items) => (
