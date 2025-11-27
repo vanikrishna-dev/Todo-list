@@ -28,8 +28,8 @@ const AddTodo = () => {
       })
       .then(res=>res.json())
       .then(serverItem => {
-        const {todoText, todoDate} = todoItemToClientModel(serverItem);
-        addTodoItem(todoText, todoDate); 
+        const {id, todoText, todoDate} = todoItemToClientModel(serverItem);
+        addTodoItem(id, todoText, todoDate); 
       })
     }
 

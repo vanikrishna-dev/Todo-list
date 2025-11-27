@@ -1,4 +1,4 @@
 export const todoItemToClientModel = (serverItem) => {
-    return {todoText: serverItem.task,
+    return {id:serverItem.id, todoText: serverItem.task,
     todoDate: serverItem.date}
 };

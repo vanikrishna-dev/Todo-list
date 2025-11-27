@@ -1,9 +1,8 @@
 export const TodoReducer = (currentTodoItems , action) => {
   switch (action.type){
     case 'ADD_ITEM': {
-      const todoText = action.payload.todoText;
-      const todoDate = action.payload.todoDate;
-      return [...currentTodoItems, {id: todoText, todoText, todoDate}];
+      const {id, todoText, todoDate} = action.payload;
+      return [...currentTodoItems, {id, todoText, todoDate}];
     }
     case 'DELETE_ITEM':
       return currentTodoItems.filter(item => item.id !== action.payload.todoId);

@@ -4,6 +4,20 @@ import './TodoItem.css';
 import { TodoContext } from "../store/TodoContext";
 
  const TodoItem = ({id, todoText, todoDate}) => {
+
+  const deleteHandler = () => {
+    fetch(`http://localhost:3000/todos/${id}`, {
+        method:'DELETE'
+        })
+      .then(res => res.json())
+      .then(data => {
+        deleteTodoItem(data.id)
+      })
+      .catch(err => {
+        console.log(err);
+      }) 
+  }
+
     const {deleteTodoItem} = useContext(TodoContext);
     return <div className="container">
         <div className="row">
@@ -17,7 +31,7 @@ import { TodoContext } from "../store/TodoContext";
             <Button 
             btnType="danger" 
             btnText='Delete'
-            handler={() => deleteTodoItem(id)} /> 
+            handler={deleteHandler} /> 
           </div> 
         </div> 
       </div>

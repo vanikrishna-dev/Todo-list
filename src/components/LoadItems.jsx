@@ -1,6 +1,7 @@
 import { useContext, useEffect, useState } from "react"
 import { TodoContext } from "../store/TodoContext"
 import Button from "./buttons";
+import { todoItemToClientModel } from "../utils/ModelUtil";
 
 const LoadItems = () => {
 
@@ -12,13 +13,7 @@ const LoadItems = () => {
         fetch('http://localhost:3000/todos')
         .then(res => res.json())
         .then(items => {
-            const newItems = items.map(item => 
-                ({
-                    id:item.id,
-                    todoText:item.task,
-                    todoDate: item.date
-                })
-            )
+            const newItems = items.map(todoItemToClientModel)
             addAllTodoItems(newItems)
         })
         .finally(() => {

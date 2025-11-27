@@ -7,10 +7,10 @@ export const TodoContextProvider = ({children}) => {
 
   const [todoItems, dispatch] = useReducer(TodoReducer, []);
 
-  const addTodoItem = (todoText, todoDate) => {
+  const addTodoItem = (id, todoText, todoDate) => {
     dispatch({
       type: 'ADD_ITEM',
-      payload: {todoText, todoDate}
+      payload: {id, todoText, todoDate}
     })
   }
 
