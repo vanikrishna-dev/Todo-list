@@ -2,6 +2,7 @@ import Button from "./buttons";
 import './AddTodo.css';
 import { useContext, useRef } from "react";
 import { TodoContext } from "../store/TodoContext";
+import { todoItemToClientModel } from "../utils/ModelUtil";
 
 const AddTodo = () => {
 
@@ -14,7 +15,22 @@ const AddTodo = () => {
       const todoDate = todoDateInput.current.value;
       todoTextInput.current.value = '';
       todoDateInput.current.value = '';
-      addTodoItem(todoText,todoDate);
+
+      fetch("http://localhost:3000/todos", {
+        method:'POST',
+        headers: {
+          'Content-type': 'application/json'
+        },
+        body: JSON.stringify({
+          task: todoText,
+          date: todoDate
+        })
+      })
+      .then(res=>res.json())
+      .then(serverItem => {
+        const {todoText, todoDate} = todoItemToClientModel(serverItem);
+        addTodoItem(todoText, todoDate); 
+      })
     }
 
     return <div className="container">
